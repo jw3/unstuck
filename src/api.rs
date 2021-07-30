@@ -7,6 +7,8 @@ pub enum Error {
     NamespaceNotFound,
     #[error("ApiError: {0} ({0:?})")]
     KubeError(#[source] kube::Error),
+    #[error("Unimplemented: {0}")]
+    Unimplemented(String),
 }
 
 impl From<kube::Error> for Error {
