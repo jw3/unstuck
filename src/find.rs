@@ -25,6 +25,9 @@ pub async fn whats_stuck(ns: &str) -> Result<(), api::Error> {
                     } {
                         for obj in dyno {
                             println!("{} {}: {}", ar.api_version, ar.kind, obj.name());
+                            for f in obj.metadata.finalizers {
+                                println!("  - {}", f);
+                            }
                         }
                     }
                 }
