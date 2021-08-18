@@ -1,10 +1,10 @@
 use clap::Clap;
 
-use unstuck::{api, find, fix, yolo};
 use std::str::FromStr;
+use unstuck::{api, find, fix, yolo};
 
 #[derive(Clap)]
-#[clap(name = "unstuck", version="0.0.0")]
+#[clap(name = "unstuck", version = "0.0.0")]
 /// Unstick a stuck namespace
 struct Opts {
     /// The namespace

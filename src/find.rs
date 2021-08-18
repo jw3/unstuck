@@ -1,8 +1,8 @@
 use crate::api;
 use k8s_openapi::api::core::v1::Namespace;
-use kube::api::{ DynamicObject};
-use kube::{Api, Client, Discovery, ResourceExt};
+use kube::api::DynamicObject;
 use kube::discovery::verbs;
+use kube::{Api, Client, Discovery, ResourceExt};
 
 pub async fn whats_stuck(ns: &str) -> Result<(), api::Error> {
     let client = Client::try_default().await?;
@@ -21,7 +21,7 @@ pub async fn whats_stuck(ns: &str) -> Result<(), api::Error> {
                     let api: Api<DynamicObject> = Api::namespaced_with(client.clone(), ns, &ar);
                     if let Some(dyno) = match api.list(&Default::default()).await {
                         Ok(x) => Some(x),
-                        Err(_) => None
+                        Err(_) => None,
                     } {
                         for obj in dyno {
                             println!("{} {}: {}", ar.api_version, ar.kind, obj.name());

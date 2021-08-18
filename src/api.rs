@@ -13,8 +13,6 @@ pub enum Error {
 
 impl From<kube::Error> for Error {
     fn from(error: kube::Error) -> Self {
-        match error {
-            e => KubeError(e),
-        }
+        KubeError(error)
     }
 }
